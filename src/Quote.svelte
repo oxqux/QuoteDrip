@@ -2,11 +2,11 @@
   import { onMount } from "svelte"
   import getQuotes from "./lib/api.ts"
 
-  let quoteText = ""
-  let status: "idle" | "loading" | "success" | "error" = "idle"
+  export let quoteText = ""
+  export let status: "idle" | "loading" | "success" | "error" = "idle"
   let errorMessage = ""
 
-  let quotes: string[] = []
+   export let quotes: string[] = []
 
   async function loadAndShowQuote() {
     status = "loading"
@@ -36,7 +36,7 @@
     }
   }
 
-  function handleGenerate() {
+  export function handleGenerate() {
     loadAndShowQuote()
   }
 

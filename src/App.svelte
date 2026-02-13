@@ -1,69 +1,24 @@
 <script lang="ts">
-  import { onMount } from "svelte"
-  import getQuotes from "./lib/api.ts"
+import Quote from "./Quote.svelte"
 
-  let quoteText = ""
-  let status: "idle" | "loading" | "success" | "error" = "idle"
-  let errorMessage = ""
+let quoteComponent: Quote;
+let status = "idle";
+let quotes = [];
 
-  let quotes: string[] = []
 
-  async function loadAndShowQuote() {
-    status = "loading"
-    errorMessage = ""
-    quoteText = ""
-
-    try {
-      quotes = await getQuotes()
-
-      if (quotes.length === 0) {
-        status = "error"
-        errorMessage = "Quotes not found"
-        quoteText = ""
-        return
-      }
-
-      const randomIndex = Math.floor(Math.random() * quotes.length)
-      quoteText = quotes[randomIndex]
-      status = "success"
-    } catch (err) {
-      status = "error"
-      errorMessage =
-        err instanceof Error
-          ? err.message
-          : "An unknown error occurred while loading quotes."
-      quoteText = ""
-    }
-  }
-
-  function handleGenerate() {
-    loadAndShowQuote()
-  }
-
-  onMount(() => {
-    loadAndShowQuote()
-  })
 </script>
 
 <main>
   <h1>QuoteDrip - random quote</h1>
 
-  <div class="quote-box">
-    {#if status === "loading"}
-      <p class="status loading">Loading quotes...</p>
-    {:else if status === "error"}
-      <p class="status error">
-        😡 Error: {errorMessage}
-      </p>
-    {:else if status === "success" && quoteText}
-      <h2 class="quote-text">{quoteText}</h2>
-    {:else}
-      <p class="status idle">Click the button to see the quote</p>
-    {/if}
-  </div>
+  <Quote
+    bind:this={quoteComponent}
+    bind:status
+    bind:quotes
+  />
 
   <button
-    on:click={handleGenerate}
+    on:click={quoteComponent.handleGenerate}
     disabled={status === "loading"}
     class:loading={status === "loading"}
   >
