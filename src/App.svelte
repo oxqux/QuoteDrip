@@ -1,21 +1,28 @@
 <script lang="ts">
-import Quote from "./Quote.svelte"
+  import Quote from "./Quote.svelte"
+  import Language from "./Language.svelte"
 
-let quoteComponent: Quote;
-let status = "idle";
-let quotes = [];
+  let quoteLang: string
 
+  let quoteComponent: Quote
+  let LanguageComponent: Language
 
+  let status = "idle"
+  let quotes = []
 </script>
 
 <main>
   <h1>QuoteDrip - random quote</h1>
 
-  <Quote
-    bind:this={quoteComponent}
-    bind:status
-    bind:quotes
-  />
+  <div class="language-wrapper">
+    <button on:click={() => LanguageComponent.toggleLanguagePopup()}>
+      Language
+    </button>
+
+    <Language bind:this={LanguageComponent} bind:quoteLang />
+  </div>
+
+  <Quote bind:this={quoteComponent} bind:status bind:quotes bind:quoteLang />
 
   <button
     on:click={quoteComponent.handleGenerate}
@@ -31,45 +38,9 @@ let quotes = [];
 </main>
 
 <style>
-  .quote-box {
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 2rem 0;
-    padding: 1.5rem;
-    border-radius: 12px;
-    background: #1e1e1e;
-    border: 1px solid #333;
-    transition: all 0.3s ease;
-  }
-
-  .quote-text {
-    font-size: 1.5rem;
-    line-height: 1.45;
-    margin: 0;
-    text-align: center;
-    color: #e0e0e0;
-  }
-
-  .status {
-    font-size: 1.2rem;
-    text-align: center;
-    margin: 0;
-  }
-
-  .loading {
-    color: #888;
-    font-style: italic;
-  }
-
-  .error {
-    color: #ff6b6b;
-    font-weight: 500;
-  }
-
-  .idle {
-    color: #777;
+  .language-wrapper {
+    position: relative;
+    display: inline-block;
   }
 
   button {

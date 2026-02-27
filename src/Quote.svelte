@@ -5,8 +5,9 @@
   export let quoteText = ""
   export let status: "idle" | "loading" | "success" | "error" = "idle"
   let errorMessage = ""
+  export let quoteLang: string
 
-   export let quotes: string[] = []
+  export let quotes: string[] = []
 
   async function loadAndShowQuote() {
     status = "loading"
@@ -14,7 +15,7 @@
     quoteText = ""
 
     try {
-      quotes = await getQuotes()
+      quotes = await getQuotes(quoteLang)
 
       if (quotes.length === 0) {
         status = "error"
@@ -70,8 +71,8 @@
     margin: 2rem 0;
     padding: 1.5rem;
     border-radius: 12px;
-    background: #1e1e1e;
-    border: 1px solid #333;
+    background: var(--bg);
+    border: 1px solid var(--fg);
     transition: all 0.3s ease;
   }
 
@@ -80,7 +81,7 @@
     line-height: 1.45;
     margin: 0;
     text-align: center;
-    color: #e0e0e0;
+    color: var(--accent);
   }
 
   .status {
@@ -102,11 +103,4 @@
   .idle {
     color: #777;
   }
-
-  .info {
-    margin-top: 1rem;
-    color: #888;
-    font-size: 0.95rem;
-  }
 </style>
-

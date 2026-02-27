@@ -1,5 +1,5 @@
-async function getQuotes(): Promise<string[]> {
-  const res = await fetch("/api/ru/quotes.json")
+async function getQuotes(lang: string): Promise<string[]> {
+  const res = await fetch(`/api/${lang}/quotes.json`)
 
   if (!res.ok) throw new Error("Failed to connect to the server")
 
