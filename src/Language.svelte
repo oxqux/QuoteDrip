@@ -3,10 +3,12 @@
   import { fly } from "svelte/transition"
   import { quintOut } from "svelte/easing"
 
+  import { getLangs } from "./lib/api.ts"
+
   let isOpen = false
   export let quoteLang: string = "english"
 
-  const languages: string[] = ["Russian", "English", "Spain"]
+  let languages: string[] = ["English"]
 
   export function toggleLanguagePopup() {
     isOpen = !isOpen
@@ -15,6 +17,14 @@
   export function setLanguage(e) {
     quoteLang = e.target.innerHTML.toLowerCase()
   }
+
+  async function loadLangs() {
+    languages = await getLangs()
+  }
+
+  onMount(() => {
+    loadLangs()
+  })
 </script>
 
 <main>

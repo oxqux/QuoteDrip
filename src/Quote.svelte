@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import getQuotes from "./lib/api.ts"
+  import { getQuotes } from "./lib/api.ts"
 
   export let quoteText = ""
   export let status: "idle" | "loading" | "success" | "error" = "idle"
