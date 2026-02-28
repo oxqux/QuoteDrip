@@ -4,12 +4,6 @@
   --secondary: #d8cfbc;
   --accent: #fffbf4;
 }
-:root.dark {
-  --bg: #11120D;
-  --fg: #565449;
-  --secondary: #d8cfbc;
-  --accent: #fffbf4;
-}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -30,6 +24,8 @@ a {
   font-weight: 500;
   color: var(--accent);
   text-decoration: inherit;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-focus-ring-color: transparent;
 }
 a:hover {
   color: var(--secondary);
@@ -66,6 +62,8 @@ button {
   color: var(--bg);
   cursor: pointer;
   transition: background-color 0.25s;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-focus-ring-color: transparent;
 }
 button:hover {
   background-color: var(--secondary);
@@ -73,13 +71,18 @@ button:hover {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --bg: #fffbf4;
+    --fg: #11120D;
+    --secondary: #565449;
+    --accent: #d8cfbc;
   }
-  a:hover {
-    color: #747bff;
+  h1, h2, h3, h4, h5, p, a {
+    color: var(--secondary);
   }
   button {
-    background-color: #f9f9f9;
+    background-color: var(--secondary);
+  }
+  button:hover {
+    background-color: var(--accent);
   }
 }

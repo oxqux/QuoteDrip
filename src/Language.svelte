@@ -35,7 +35,7 @@
     >
       <h4>Languages</h4>
       {#each languages as lang (lang)}
-        <p on:click={setLanguage}>{lang}</p>
+        <a href="./#lang={lang.toLowerCase()}" on:click={setLanguage}>{lang}</a>
       {/each}
     </div>
   {/if}
@@ -52,6 +52,11 @@
     border: solid 1px var(--fg);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
+  }
+
+  a {
+    display: block;
+    margin: 0.7rem;
   }
 
   main {

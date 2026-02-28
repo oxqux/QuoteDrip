@@ -72,7 +72,7 @@
     padding: 1.5rem;
     border-radius: 12px;
     background: var(--bg);
-    border: 1px solid var(--fg);
+    border: 1px solid var(--secondary);
     transition: all 0.3s ease;
   }
 
@@ -81,7 +81,6 @@
     line-height: 1.45;
     margin: 0;
     text-align: center;
-    color: var(--accent);
   }
 
   .status {
