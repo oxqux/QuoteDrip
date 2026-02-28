@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "http://localhost:3001",
+        target: "https://raw.githubusercontent.com/oxqux/QuoteDrip/refs/heads/quotes",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
